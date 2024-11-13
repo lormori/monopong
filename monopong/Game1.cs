@@ -6,28 +6,27 @@ namespace monopong;
 
 public class Game1 : Game
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
+    private GraphicsDeviceManager graphics;
+    private Bat playerTwo;
+    private Bat playerOne;
 
     public Game1()
     {
-        _graphics = new GraphicsDeviceManager(this);
+        graphics = new GraphicsDeviceManager(this);
+        
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
-
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        // TODO: use this.Content to load your game content here
+        playerOne = new Bat(GraphicsDevice);
+        playerTwo = new Bat(GraphicsDevice);
     }
 
     protected override void Update(GameTime gameTime)
@@ -36,8 +35,8 @@ public class Game1 : Game
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
-
+        playerOne.Update(gameTime);
+        
         base.Update(gameTime);
     }
 
@@ -45,8 +44,8 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
-
+        playerOne.Draw();
+        
         base.Draw(gameTime);
     }
 }
